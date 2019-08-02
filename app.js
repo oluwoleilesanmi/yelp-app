@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 let app = express();
 
@@ -16,7 +17,7 @@ app.get("/campground", (req, res) => {
 });
 
 app.get("/campground/new", (req, res) => {
-  res.render("new");
+  res.render("campground/new");
 });
 
 app.post("/campground", (req, res) => {
