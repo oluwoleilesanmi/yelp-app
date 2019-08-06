@@ -7,12 +7,15 @@ import flash from "connect-flash";
 import LocalStrategy from "passport-local";
 import User from "./models/user";
 import indexRoutes from "./routes/index";
+import methodOverride from "method-override";
+import campgroundRoutes from "./routes/campgrounds";
 
 
 let app = express();
 mongoose.connect("mongodb://localhost/yelp_app");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.use(flash());
 
@@ -38,6 +41,7 @@ app.use(function(req, res, next) {
 });
 
 app.use("/", indexRoutes);
+app.use("/campgrounds", campgroundRoutes);
 
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log(`Server is wiredup and running on port ${process.env.PORT}`);
