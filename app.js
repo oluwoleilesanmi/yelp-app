@@ -9,7 +9,7 @@ import User from "./models/user";
 import indexRoutes from "./routes/index";
 import methodOverride from "method-override";
 import campgroundRoutes from "./routes/campgrounds";
-
+import commentRoutes from "./routes/comments";
 
 let app = express();
 mongoose.connect("mongodb://localhost/yelp_app");
@@ -42,6 +42,7 @@ app.use(function(req, res, next) {
 
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
 
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log(`Server is wiredup and running on port ${process.env.PORT}`);
